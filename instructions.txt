@@ -1,0 +1,11 @@
+INSTRUCTIONS
+
+Enter each name and ensure the names are correct. No double names are allowed so make sure to differentiate between the names in some way.
+
+Enter the dollar amounts precisely. Ensure that the total due is equal to the total owed. The program works when these two numbers are equivalent. Try to prevent misentries to allow the program to be most effective.
+
+Enter no more in the name slot when you have finished entering both debtor and creditor
+
+Debtor = loser
+Creditor = winner
+Sorry for the jargan, I liked it.
