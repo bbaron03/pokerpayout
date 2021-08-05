@@ -33,27 +33,26 @@ class lastGame:
       self.owes[debtor["Name"]] = []
 
 
-'''Loops through every creditor for each debtor. If the debtor - creditor is less than zero, then the debtor is released and the creditors amount due changes to the leftover. If debtor - creditor is greater than zero, keep the debtor, creditor is now due 0. If the debtor - creditor is equal to zero, creditor is due 0 and the debtor is released. Self.owes uses the debtors names as the keys and the value is an array that stores tuples of the creditor's name and how much the debtor owes them.'''
+  '''Loops through every creditor for each debtor. If the debtor - creditor is less than zero, then the debtor is released and the creditors amount due changes to the leftover. If debtor - creditor is greater than zero, keep the debtor, creditor is now due 0. If the debtor - creditor is equal to zero, creditor is due 0 and the debtor is released. Self.owes uses the debtors names as the keys and the value is an array that stores tuples of the creditor's name and how much the debtor owes them.'''
 
 
-def calculate(self):
-  for i in range(0, len(self.debtors)):
-    for j in range(0, len(self.creditors)):
-      self.debtors[i]["owed"] -= self.creditors[j]["due"]
-      if self.debtors[i]["owed"] < 0:
-        self.owes[self.debtors[i]["Name"]].append((self.creditors[j]["Name"], self.creditors[j]["due"] + self.debtors[i]["owed"]))
-        self.creditors[j]["due"] = -self.debtors[i]["owed"]
-        break
-      elif self.debtors[i]["owed"] > 0:
+  def calculate(self):
+    for i in range(0, len(self.debtors)):
+      for j in range(0, len(self.creditors)):
+        self.debtors[i]["owed"] -= self.creditors[j]["due"]
+        if self.debtors[i]["owed"] < 0:
+          self.owes[self.debtors[i]["Name"]].append((self.creditors[j]["Name"], self.creditors[j]["due"] + self.debtors[i]["owed"]))
+          self.creditors[j]["due"] = -self.debtors[i]["owed"]
+          break
+        elif self.debtors[i]["owed"] > 0:
+            self.owes[self.debtors[i]["Name"]].append((self.creditors[j]["Name"], self.creditors[j]["due"]))
+            self.creditors[j]["due"] = 0
+        else:
           self.owes[self.debtors[i]["Name"]].append((self.creditors[j]["Name"], self.creditors[j]["due"]))
           self.creditors[j]["due"] = 0
-      else:
-         self.owes[self.debtors[i]["Name"]].append((self.creditors[j]["Name"], self.creditors[j]["due"]))
-         self.creditors[j]["due"] = 0
-         break
+          break
 
   def printFinal(self):#Prints the owed money neatly
-
     for debtor in self.owes:
       sum = 0
       print(debtor + " owes: ")
@@ -64,7 +63,7 @@ def calculate(self):
           print("\t" + creditorTuple[0] + " $" + str(creditorTuple[1]))
       print("TOTAL = " + str(sum))
       print("\n")
-
+    
   def complete(self):
     self.enterCreditors()
     self.enterDebtors()
